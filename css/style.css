@@ -117,6 +117,10 @@ h1 {
   clip: rect(1px, 1px, 1px, 1px);
 }
 
+.banner {
+  width: 100%;
+}
+
 /** Sliding Navigation */
 @media only screen and (min-width: 37.5em) {
   h2 {
