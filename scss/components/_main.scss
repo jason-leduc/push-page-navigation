@@ -20,6 +20,7 @@ html {
 
 body{
   font-family: sans-serif;
+  background-color: $black;
   @include zero;
   // Hides close button if there is no js
   &.noscript .close-btn,
@@ -31,107 +32,124 @@ body{
 header {
   padding: 0 1em;
   position: relative;
-  .toggle-btn{
-    position: absolute;
-    right: 1em;
-    top: 0;
-  }
 }
 
-.navigation ul{
-  padding:0;
-  li{
+h1 {
+  color: $white;
+  text-decoration: underline;
+}
+
+.toggle-btn {
+  position: absolute;
+  right: 1em;
+  top: 0;
+  color: $white;
+  background-color: $black;
+}
+
+.navigation ul {
+  padding: 0;
+  li {
     list-style-type: none;
-    a{
-      display: block;
-      padding: .5em 1em;
-      text-align: center;
-      border-bottom: 1px solid $light-grey;
-      text-decoration: none;
+    &:hover {
+      background-color: $yellow; 
     }
-    &:first-child a{
-      border-top: 1px solid $light-grey;
+  }
+  a {
+    display: block;
+    padding: 1em;
+    text-decoration: none;
+    color: $white;
+    text-align: left;
+    &:hover {
+      color: $black; 
     }
-  } // li
-} // .navigation ul
+  }
+  
+}
 
-.toggle-btn,
-.close-btn{
-  color: $text-color;
-	text-decoration: none;
-	height: 40px;
-	width: 40px;
-	&:before{
-		border: 1px solid $light-grey;
-		padding: 13px 11px;
-		height: 40px;
-		width: 40px;
-		display: inline-block;
-	}
-  span{
-    @include element-invisible ;
+
+
+
+
+
+
+/** Sliding Navigation */
+
+// Page should move when nav opens - this is the only time you will use max-width for mediaquery //
+
+@media only screen and (min-width: 37.5em) {
+  h2 {
+    margin: 1em auto;
+  }
+  
+}
+
+@media only screen and (min-width: 38em) {
+  .navigation ul {
+    li {
+    }
+    a {
+      text-align: center;
+    }
+
   }
 }
 
-.close-btn{
-  margin: 1em;
-}
-
-
-/**
- * Sliding Navigation
- */
-
-// Page should move when nav opens
-// only time we will ever use max-width
-@media only screen and (max-width: 60em){
-  .site-wrapper{
+@media only screen and (max-width: 60em) {
+  .site-wrapper {
     position: relative;
     overflow: hidden;
     width: 100%;
     z-index: 100;
-    .sliding-canvas{
+    
+    .sliding-canvas {
       width: 100%;
       height: 100%;
       position: relative;
       transform: translateX(0);
-      @include ease(all, 300ms, ease-in-out);
+      transition: all 300ms ease-in-out;
     }
-
-    &[data-state='slide-open'] .sliding-canvas{
-      transform: translateX(-100%);
+    
+    &[data-state="slide-open"] .sliding-canvas {
+        transform: translateX(-100%);
     }
-
-    &[data-state='slide-open']{
-      // Allow expansion of navigation past page height, when open
-      overflow:visible;
+    
+    &[data-state="slide-open"] {
+        overflow: visible;
     }
-  }
-
-  // Nav styles
-  .slide-menu{
-    //creates sliding effect
+  } //.site-wrapper
+  
+  .navigation {
     position: absolute;
     width: 100%;
     right: -100%;
     top: 0;
     bottom: 0;
-    height: 100%;
     padding: 0;
     min-height: 800px;
   }
-}
+} //@media query
 
-// Resets page when desktop, even if nav is toggled open
-@media only screen and (min-width: 60em) {
+@media only screen and (min-width: 60em) { 
   .toggle-btn,
-  .close-btn{
+  .close-btn {
     display: none;
   }
+  
+  .navigation ul {
+    padding: 0;
+    position: absolute;
+    top: -1.25em;
+    right: 1em;
+  }
+  li {
+    display: inline-block;
+  }
+  
 }
 
-
-body.noscript .slide-menu{
+body.noscript .navigation {
   position: static;
   right: auto;
 }
