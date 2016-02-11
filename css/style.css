@@ -89,6 +89,34 @@ h1 {
   color: #000;
 }
 
+.close-btn {
+  color: #fff;
+}
+
+.toggle-btn,
+.close-btn {
+  text-decoration: none;
+  height: 40px;
+  width: 40px;
+}
+
+.toggle-btn:before,
+.close-btn:before {
+  display: inline-block;
+  padding: 13px 11px;
+  height: 40px;
+  width: 40px;
+}
+
+.toggle-btn span,
+.close-btn span {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
 /** Sliding Navigation */
 @media only screen and (min-width: 37.5em) {
   h2 {
